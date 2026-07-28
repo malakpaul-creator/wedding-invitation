@@ -71,14 +71,29 @@
       border-radius: 6px;
     }
 
-    /* Locations */
+    /* Locations Grid & Embedded Maps */
     .locations {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
       text-align: left;
     }
-    .location-box h3 { color: var(--primary); margin-bottom: 5px; }
+    .location-box {
+      background: #fdfbf7;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #eae2d8;
+      display: flex;
+      flex-direction: column;
+    }
+    .location-box h3 { color: var(--primary); margin-top: 0; margin-bottom: 5px; }
+    .map-embed {
+      width: 100%;
+      height: 200px;
+      border: 0;
+      border-radius: 6px;
+      margin-top: 12px;
+    }
 
     /* RSVP Form */
     form { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
@@ -106,7 +121,7 @@
   <header>
     <h2 id="personalized-greeting">You are cordially invited to celebrate the wedding of</h2>
     <h1>Bride & Groom</h1>
-    <p>October 24, 2026</p>
+    <p>August 12, 2027</p>
   </header>
 
   <div class="container">
@@ -122,25 +137,49 @@
       </div>
     </div>
 
-    <!-- Location Section -->
+    <!-- Location Section with Interactive Maps -->
     <div class="card">
       <h2>Locations</h2>
       <div class="locations">
+        
+        <!-- Groom's Location -->
         <div class="location-box">
           <h3>Groom's Address</h3>
-          <p>123 Groom St, Suite 1<br>City, State, Zip</p>
-          <a href="https://www.google.com/maps/@33.9360656,35.6342659,20.12z?authuser=0&entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D" target="_blank">View Map</a>
+          <p>123 Groom St<br>City, State, Zip</p>
+          <iframe 
+            class="map-embed" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=33.936260, 35.634333&t=&z=15&ie=UTF8&iwloc=&output=embed">
+          </iframe>
         </div>
+
+        <!-- Bride's Location -->
         <div class="location-box">
           <h3>Bride's Address</h3>
-          <p>456 Bride Ave, Apt 2<br>City, State, Zip</p>
-          <a href="https://maps.google.com" target="_blank">View Map</a>
+          <p>456 Bride Ave<br>City, State, Zip</p>
+          <iframe 
+            class="map-embed" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=34.000928, 35.724428&t=&z=15&ie=UTF8&iwloc=&output=embed">
+          </iframe>
         </div>
+
+        <!-- Venue Location -->
         <div class="location-box">
           <h3>Venue Address</h3>
-          <p>789 Grand Ballroom Rd<br>City, State, Zip</p>
-          <a href="https://maps.google.com" target="_blank">View Map</a>
+
+http://googleusercontent.com/map_location_reference/1
+          <p>[Palaiseau](http://googleusercontent.com/map_location_reference/0)<br>91120 Palaiseau, France</p>
+          <iframe 
+            class="map-embed" 
+            loading="lazy" 
+            allowfullscreen 
+            src="https://maps.google.com/maps?q=Palaiseau%20France&t=&z=15&ie=UTF8&iwloc=&output=embed">
+          </iframe>
         </div>
+
       </div>
     </div>
 
@@ -148,7 +187,6 @@
     <div class="card">
       <h2>Our Moments</h2>
       <div class="gallery">
-        <!-- Add your photos here -->
         <img src="https://via.placeholder.com/400x300?text=Photo+1" alt="Moment 1">
         <img src="https://via.placeholder.com/400x300?text=Photo+2" alt="Moment 2">
         <img src="https://via.placeholder.com/400x300?text=Photo+3" alt="Moment 3">
@@ -242,7 +280,6 @@
       document.getElementById("guest-welcome").innerText = `Guest: ${data.guestName}`;
       document.getElementById("max-allowed-text").innerText = data.maxGuestsAllowed;
 
-      // Populate guest count options dynamically based on MaxGuestsAllowed
       const countSelect = document.getElementById("guestsCount");
       countSelect.innerHTML = "";
       for (let i = 1; i <= data.maxGuestsAllowed; i++) {
@@ -252,7 +289,6 @@
         countSelect.appendChild(opt);
       }
 
-      // Fill existing responses if already submitted
       if (data.attending) {
         document.getElementById("attending").value = data.attending;
         if (data.attending === "Yes") {
@@ -262,7 +298,6 @@
       }
     }
 
-    // Toggle guest count dropdown based on attending choice
     document.getElementById("attending").addEventListener("change", (e) => {
       const countContainer = document.getElementById("guest-count-container");
       if (e.target.value === "Yes") {
@@ -290,7 +325,7 @@
 
       fetch(SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // Bypasses CORS restrictions for Apps Script
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       })
