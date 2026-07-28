@@ -71,29 +71,38 @@
       border-radius: 6px;
     }
 
-    /* Locations Grid & Embedded Maps */
+    /* Locations Grid & Prompts */
     .locations {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
-      text-align: left;
+      text-align: center;
     }
     .location-box {
       background: #fdfbf7;
-      padding: 15px;
+      padding: 20px 15px;
       border-radius: 6px;
       border: 1px solid #eae2d8;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
-    .location-box h3 { color: var(--primary); margin-top: 0; margin-bottom: 5px; }
-    .map-embed {
-      width: 100%;
-      height: 200px;
-      border: 0;
-      border-radius: 6px;
-      margin-top: 12px;
+    .location-box h3 { color: var(--primary); margin-top: 0; margin-bottom: 8px; }
+    .location-box p { font-size: 0.95rem; margin-bottom: 15px; color: #555; }
+    
+    .map-btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: opacity 0.2s ease;
     }
+    .map-btn:hover { opacity: 0.88; }
 
     /* RSVP Form */
     form { display: flex; flex-direction: column; gap: 15px; max-width: 400px; margin: 0 auto; }
@@ -137,47 +146,45 @@
       </div>
     </div>
 
-    <!-- Location Section with Interactive Maps -->
+    <!-- Location Prompts Section -->
     <div class="card">
       <h2>Locations</h2>
       <div class="locations">
         
-        <!-- Groom's Location -->
+        <!-- Groom's Address Prompt -->
         <div class="location-box">
-          <h3>Groom's Address</h3>
-          <p>123 Groom St<br>City, State, Zip</p>
-          <iframe 
-            class="map-embed" 
-            loading="lazy" 
-            allowfullscreen 
-            src="https://maps.google.com/maps?q=33.936260, 35.634333&t=&z=15&ie=UTF8&iwloc=&output=embed">
-          </iframe>
+          <div>
+            <h3>Groom's Location</h3>
+            <p>Groom Gathering Spot</p>
+          </div>
+          <!-- Replace coordinates below with your exact GPS coordinates or Google Maps share link -->
+          <a href="https://www.google.com/maps/search/?api=1&query=33.936260, 35.634333" target="_blank" class="map-btn">
+            📍 Location on map
+          </a>
         </div>
 
-        <!-- Bride's Location -->
+        <!-- Bride's Address Prompt -->
         <div class="location-box">
-          <h3>Bride's Address</h3>
-          <p>456 Bride Ave<br>City, State, Zip</p>
-          <iframe 
-            class="map-embed" 
-            loading="lazy" 
-            allowfullscreen 
-            src="https://maps.google.com/maps?q=34.000928, 35.724428&t=&z=15&ie=UTF8&iwloc=&output=embed">
-          </iframe>
+          <div>
+            <h3>Bride's Location</h3>
+            <p>Bride Gathering Spot</p>
+          </div>
+          <!-- Replace coordinates below with your exact GPS coordinates or Google Maps share link -->
+          <a href="https://www.google.com/maps/search/?api=1&query=34.000928, 35.724428" target="_blank" class="map-btn">
+            📍 Location on map
+          </a>
         </div>
 
-        <!-- Venue Location -->
+        <!-- Venue Location Prompt -->
         <div class="location-box">
-          <h3>Venue Address</h3>
-
-http://googleusercontent.com/map_location_reference/1
-          <p>[Palaiseau](http://googleusercontent.com/map_location_reference/0)<br>91120 Palaiseau, France</p>
-          <iframe 
-            class="map-embed" 
-            loading="lazy" 
-            allowfullscreen 
-            src="https://maps.google.com/maps?q=Palaiseau%20France&t=&z=15&ie=UTF8&iwloc=&output=embed">
-          </iframe>
+          <div>
+            <h3>Venue Location</h3>
+            <p>Wedding Ceremony & Reception</p>
+          </div>
+          <!-- Replace coordinates below with your exact GPS coordinates or Google Maps share link -->
+          <a href="https://www.google.com/maps/search/?api=1&query=48.7135,2.2132" target="_blank" class="map-btn">
+            📍 Location on map
+          </a>
         </div>
 
       </div>
